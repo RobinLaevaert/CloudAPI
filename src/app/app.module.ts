@@ -8,6 +8,10 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FooterComponent } from './footer/footer.component';
+import { StandingsComponent } from './standings/standings.component';
+import { FixturesComponent } from './fixtures/fixtures.component';
+import { CompetitionComponent } from './competition/competition.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,14 +20,22 @@ import { FooterComponent } from './footer/footer.component';
     NavBarComponent,
     HomeComponent,
     PageNotFoundComponent,
-    FooterComponent
+    FooterComponent,
+    StandingsComponent,
+    FixturesComponent,
+    CompetitionComponent
     
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent},
+      { path: 'competition/epl', component: CompetitionComponent},
+      { path: 'competition/ligue1', component: CompetitionComponent},
+      { path: 'competition/bundes', component: CompetitionComponent},
+      { path: 'competition/laliga', component: CompetitionComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}
     ], { useHash: true }),
