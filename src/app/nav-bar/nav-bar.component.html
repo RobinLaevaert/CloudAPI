@@ -3,18 +3,18 @@
         <a href="#" class="navbar-brand">CLOUD API</a>
     </logo>
     <links>
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link waves-light" mdbRippleRadius>PremierLeague <span class="sr-only">(current)</span></a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link waves-light" [routerLink]="['/competition/epl']" mdbRippleRadius>PremierLeague <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link waves-light" mdbRippleRadius>BundesLiga</a>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link waves-light" [routerLink]="['/competition/bundes']" mdbRippleRadius>BundesLiga</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link waves-light" mdbRippleRadius>LaLiga</a>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link waves-light" [routerLink]="['/competition/laliga']" mdbRippleRadius>LaLiga</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link waves-light" mdbRippleRadius>Ligue1</a>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link waves-light" [routerLink]="['/competition/ligue1']" mdbRippleRadius>Ligue1</a>
             </li>
         </ul>
     </links>

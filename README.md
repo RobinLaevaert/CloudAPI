@@ -1,10 +1,13 @@
-# Ng4Mdbootstrap
+# Opdracht CloudAPI's Robin Laevaert
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**Download extension for CORS toggling**
+**FireFox** : https://addons.mozilla.org/nl/firefox/addon/cors-everywhere/
+**Chrome** : https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi
 
 ## Code scaffolding
 

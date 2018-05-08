@@ -12,6 +12,8 @@ import { StandingsComponent } from './standings/standings.component';
 import { FixturesComponent } from './fixtures/fixtures.component';
 import { CompetitionComponent } from './competition/competition.component';
 import { FormsModule } from '@angular/forms';
+import { SoccerService } from './services/soccer.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -39,9 +41,10 @@ import { FormsModule } from '@angular/forms';
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}
     ], { useHash: true }),
+    HttpClientModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [],
+  providers: [SoccerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
