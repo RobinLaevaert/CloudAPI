@@ -1,26 +1,26 @@
 Competities:
 <table class="table table-hover">
   <thead >
-      <tr>
+      <tr mdbTooltip>
           <th id="row">Standing</th>
           <th id="row">Logo</th>
           <th id="row">Team</th>
-          <th id="row">Wins</th>
-          <th id="row">Draws</th>
-          <th id="row">Losses</th>
+          <th id="row" mdbTooltip="+3 points" >Wins</th>
+          <th id="row" mdbTooltip="+1 point" >Draws</th>
+          <th id="row" mdbTooltip="+0 points" >Losses</th>
           <th id="row">Goal difference</th>
           <th id="row">Points</th>
       </tr>
   </thead>
   <tbody>
       <tr *ngFor="let g of standings" mdbTooltip>
-          <th id="row">{{g.position}}</th>
-          <th id="row"><img src={{g.crestURI}} alt="" id="crest"></th>
+          <td id="position">{{g.position}}</td>
+          <td id="row"><img src={{g.crestURI}} alt="" id="crest"></td>
           <td id="row">{{g.teamName}}</td>
-          <td id="row">{{g.wins}}</td>
-          <td id="row">{{g.draws}}</td>
-          <td id="row">{{g.losses}}</td>
-          <td id="row"mdbTooltip="For: {{g.goals}} Against: {{g.goalsAgainst}}">{{g.goalDifference}}</td>
+          <td id="row" mdbTooltip='{{g.winpercentage}} %'>{{g.wins}}</td>
+          <td id="row" mdbTooltip='{{g.drawpercentage}} %'>{{g.draws}}</td>
+          <td id="row" mdbTooltip='{{g.losspercentage}} %'>{{g.losses}}</td>
+          <td id="row" mdbTooltip="For: {{g.goals}} Against: {{g.goalsAgainst}}">{{g.goalDifference}}</td>
           <td id="row">{{g.points}}</td>
       </tr>
   </tbody>

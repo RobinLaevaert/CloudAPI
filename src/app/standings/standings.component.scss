@@ -1,7 +1,14 @@
 #crest{
     height: 50px;
 }
-#row{
+
+
+th{
     text-align: center;
     vertical-align: middle
+}
+td{text-align: center;
+    vertical-align: middle}
+#position{
+    font-weight: bold;
 }

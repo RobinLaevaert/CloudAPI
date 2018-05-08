@@ -16,6 +16,8 @@ import { SoccerService } from './services/soccer.service';
 import { HttpClientModule } from '@angular/common/http';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,  
@@ -25,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     StandingsComponent,
     FixturesComponent,
-    CompetitionComponent
+    CompetitionComponent,
+    
     
   ],
   imports: [
@@ -41,10 +44,13 @@ import { HttpClientModule } from '@angular/common/http';
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}
     ], { useHash: true }),
-    HttpClientModule
+    HttpClientModule,
+    
+  
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   providers: [SoccerService],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

@@ -1,30 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+
+
 
 @Injectable()
 export class SoccerService {
-
-
+  httpOptions = {
+    headers: new HttpHeaders({
+    'X-Auth-Token' : '9a79602abb2645489a5ff6596df5b4fa'
+  })};
   private url = 'http://api.football-data.org/v1'
   constructor(private http : HttpClient) { }
 
+  
   getCompetitions():Observable<competitions.RootObject[]>{
-    return this.http.get<competitions.RootObject[]>(this.url + '/competitions')
+    return this.http.get<competitions.RootObject[]>(this.url + '/competitions', this.httpOptions)
   }  
 
   getCompetition(id:number):Observable<competitions.RootObject>{
-    return this.http.get<competitions.RootObject>(this.url + '/competitions' +  `/${id}`);
+    return this.http.get<competitions.RootObject>(this.url + '/competitions' +  `/${id}`, this.httpOptions);
   }
 
-  getCompetitionTable(id:number, matchDay:number = 999): Observable<League.RootObject>{
-    if(matchDay == 999){
-      return this.http.get<League.RootObject>(this.url + '/competitions' +  `/${id}` + '/leagueTable');
-    }
-    else{
-      return this.http.get<League.RootObject>(this.url + '/competitions' +  `/${id}` + `/leagueTable?matchday=${matchDay}`);
-    }
+  getCompetitionTable(id:number, matchDay:number = 999): Observable<League.RootObject>{  
+    return this.http.get<League.RootObject>(this.url + '/competitions' +  `/${id}` + `/leagueTable?matchday=${matchDay}`, this.httpOptions);
+  }
 
+  getX(){
+    
   }
 
 }
@@ -124,6 +127,9 @@ export namespace League{
     losses: number;
     home: Home;
     away: Away;
+    winpercentage: number;
+    drawpercentage: number;
+    losspercentage: number;
   }
 
   export interface RootObject {
