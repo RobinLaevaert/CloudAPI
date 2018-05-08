@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SoccerService, RootObject } from '../services/soccer.service';
+import { SoccerService, competitions, League } from '../services/soccer.service';
 
 @Component({
   selector: 'app-standings',
@@ -7,11 +7,12 @@ import { SoccerService, RootObject } from '../services/soccer.service';
   styleUrls: ['./standings.component.scss']
 })
 export class StandingsComponent implements OnInit {
-  competitions: RootObject[]
+  competitions: League.RootObject;
+  standings : League.Standing[];
   constructor(private svc: SoccerService) { }
 
   ngOnInit() {
-   this.svc.getCompetitions().subscribe(result => this.competitions = result);
+   this.svc.getCompetitionTable(445).subscribe(result => this.standings = result.standing);
   }
 
 }
