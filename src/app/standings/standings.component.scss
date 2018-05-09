@@ -5,10 +5,20 @@
 
 th{
     text-align: center;
-    vertical-align: middle
+    vertical-align: middle;
 }
-td{text-align: center;
-    vertical-align: middle}
+td{
+    text-align: center;
+    vertical-align: middle;
+    
+    
+}
 #position{
     font-weight: bold;
+    
+}
+#kaart{
+    width: 49%;
+    margin: .75%;
+    float: left;
 }
