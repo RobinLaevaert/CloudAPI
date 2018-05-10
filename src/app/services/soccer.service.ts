@@ -30,6 +30,10 @@ export class SoccerService {
     return this.http.get<competitionFixtures.RootObject>(this.url + `/competitions/${id}/fixtures?matchday=${matchDay}`, this.httpOptions);
   }
 
+  getCompetitionTeams(id:number): Observable<competitionTeams.RootObject>{
+    return this.http.get<competitionTeams.RootObject>(this.url + `/competitions/${id}/teams`, this.httpOptions);
+  }
+
   getTeamFromURL(urlvar): Observable<Team.RootObject>{
     return this.http.get<Team.RootObject>(urlvar, this.httpOptions);
   }
@@ -119,6 +123,7 @@ export namespace League{
     _links: Links2;
     position: number;
     teamName: string;
+    teamShortName: string;
     crestURI: string;
     playedGames: number;
     points: number;
@@ -209,6 +214,8 @@ export namespace competitionFixtures{
     matchday: number;
     homeTeamName: string;
     homeTeamCrest:string;
+    homeTeamShortName: String;
+    awayTeamShortName: String;
     awayTeamCrest:string;
     awayTeamName: string;
     result: Result;
@@ -253,3 +260,52 @@ export namespace Team{
 
 }
 
+export namespace competitionTeams{
+  
+  export interface Self {
+    href: string;
+  }
+
+  export interface Competition {
+    href: string;
+  }
+
+  export interface Links {
+    self: Self;
+    competition: Competition;
+  }
+
+  export interface Self2 {
+    href: string;
+  }
+
+  export interface Fixtures {
+    href: string;
+  }
+
+  export interface Players {
+    href: string;
+  }
+
+  export interface Links2 {
+    self: Self2;
+    fixtures: Fixtures;
+    players: Players;
+  }
+
+  export interface Team {
+    _links: Links2;
+    name: string;
+    code: string;
+    shortName: string;
+    squadMarketValue?: any;
+    crestUrl: string;
+  }
+
+  export interface RootObject {
+    _links: Links;
+    count: number;
+    teams: Team[];
+  }
+
+}

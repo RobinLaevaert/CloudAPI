@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,  NO_ERRORS_SCHEMA  } from '@angular/core';
+import { NgModule,  NO_ERRORS_SCHEMA, Component  } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
@@ -14,6 +14,7 @@ import { CompetitionComponent } from './competition/competition.component';
 import { FormsModule } from '@angular/forms';
 import { SoccerService } from './services/soccer.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TeamDetailComponent } from './team-detail/team-detail.component';
 
 
 
@@ -28,8 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     StandingsComponent,
     FixturesComponent,
     CompetitionComponent,
-    
-    
+    TeamDetailComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -37,10 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent},
-      { path: 'competition/epl', component: CompetitionComponent},
-      { path: 'competition/ligue1', component: CompetitionComponent},
-      { path: 'competition/bundes', component: CompetitionComponent},
-      { path: 'competition/laliga', component: CompetitionComponent},
+      { path: 'competition/:compid', component: CompetitionComponent},
+      { path: 'competition/:compid/team/:teamid', component: TeamDetailComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}
     ], { useHash: true }),

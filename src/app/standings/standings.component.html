@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let g of standings" mdbTooltip>
+                <tr *ngFor="let g of standings" [routerLink]='["/competition/epl/team/" + g.teamShortName]' mdbTooltip>
                     <td id="position">{{g.position}}</td>
                     <td id="row"><img src={{g.crestURI}} alt="" id="crest"></td>
                     <td id="row">{{g.teamName}}</td>
@@ -35,3 +35,4 @@
     </div>
 
 </div>
+

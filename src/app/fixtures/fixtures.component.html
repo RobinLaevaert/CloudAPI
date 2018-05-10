@@ -10,9 +10,9 @@
               <tr *ngFor="let g of fixtures" mdbTooltip>
                   <td id="position"><span id="time">{{g.date |date:"HH:mm"}}</span> {{g.date |date:"dd MMMM"}}</td>
                   <td id="row"><img src={{g.homeTeamCrest}} alt="" id="crest"> </td>
-                  <td id="row" [style.color]="g.result.homeTeamColor">{{g.homeTeamName}}</td>
+                  <td id="row" [style.color]="g.result.homeTeamColor" [routerLink]='["/competition/epl/team/" + g.homeTeamShortName]'>{{g.homeTeamName}}</td>
                   <td id="row">{{g.result.goalsHomeTeam}} v {{g.result.goalsAwayTeam}}</td>
-                  <td id="row" [style.color]="g.result.awayTeamColor">{{g.awayTeamName}}</td>
+                  <td id="row" [style.color]="g.result.awayTeamColor" [routerLink]='["/competition/epl/team/" + g.awayTeamShortName]'>{{g.awayTeamName}}</td>
                   <td id="row"><img src={{g.awayTeamCrest}} alt="" id="crest"> </td>
                   <td id="row"></td>
               </tr>
