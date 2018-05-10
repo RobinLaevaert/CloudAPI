@@ -24,35 +24,31 @@ export class TeamDetailComponent implements OnInit {
   constructor(private svc : SoccerService) { }
 
   ngOnInit() {
-    var games;
     
-
-    this.svc.getCompetition(this.competitionid).subscribe(result1 =>{
-      games = result1.numberOfMatchdays;
-      this.svc.getTeam(this.id).subscribe(result =>{
-        this.TeamObject = result;
-        this.svc.getCompetitionTable(this.competitionid,38).subscribe(result => {
-          this.standings = result.standing;
-          this.TeamObject.currentLeague = result.leagueCaption
-          this.standings.forEach(s =>{
-            if(s.teamName == this.TeamObject.name){
-              this.TeamObject.currenPoints = `${s.points} pts`;
-              switch(s.position){
-                case 1: 
-                  this.TeamObject.currentPlace = "1st"
-                  break;
-                case 2:
-                  this.TeamObject.currentPlace = "2nd"
-                  break;
-                default:
-                  this.TeamObject.currentPlace = `${s.position}th`
-                  break;
-              }
+    this.svc.getTeam(this.id).subscribe(result =>{
+      this.TeamObject = result;
+      this.svc.getCompetitionTable(this.competitionid,38).subscribe(result => {
+        this.standings = result.standing;
+        this.TeamObject.currentLeague = result.leagueCaption
+        this.standings.forEach(s =>{
+          if(s.teamName == this.TeamObject.name){
+            this.TeamObject.currenPoints = `${s.points} pts`;
+            switch(s.position){
+              case 1: 
+                this.TeamObject.currentPlace = "1st"
+              break;
+              case 2:
+                this.TeamObject.currentPlace = "2nd"
+              break;
+              default:
+                this.TeamObject.currentPlace = `${s.position}th`
+              break;
             }
-          })
+          }
         })
       })
     })
+    
 
     
     this.svc.getPlayers(this.id).subscribe(result =>{

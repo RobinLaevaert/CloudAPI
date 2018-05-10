@@ -1,6 +1,6 @@
 
-<div class="card"  id="TeamKaart" ng-if="TeamObject" >
-  <img src="{{TeamObject.crestUrl}}" class="img-fluid" id="crest" >
+<div class="card"  id="TeamKaart" *ngIf="TeamObject" >
+  <img src="{{TeamObject.crestUrl}}" alt="" class="img-fluid" id="crest" >
   <div id="tekst" >
     <h1 >{{TeamObject.name}}</h1>
     <br>
@@ -23,7 +23,7 @@
                 <tr id="Fieldpos">Keepers</tr>
                 <tr *ngFor="let k of Keepers" mdbTooltip>
                     <td id="row" id="Jersey">{{k.jerseyNumber}}</td>
-                    <td id="row" ng-if="k.nationalityFlag"><img src="{{k.nationalityFlag}}" class="img-fluid" id="flag" mdbToolTip="{{k.nationality}}"></td>
+                    <td id="row" ng-if="k.nationalityFlag"><img src="{{k.nationalityFlag}}" alt="" class="img-fluid" id="flag" mdbToolTip="{{k.nationality}}"></td>
                     <td id="row">{{k.name}}</td>
                     <td id="row">{{k.position}}</td>
                 </tr>
