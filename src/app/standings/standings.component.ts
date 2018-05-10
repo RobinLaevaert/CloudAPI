@@ -21,7 +21,6 @@ export class StandingsComponent implements OnInit {
       this.teams = result1.teams;
       this.svc.getCompetition(this.competitionid).subscribe(result =>{
         games = result.numberOfMatchdays;
-        console.log(games);
         this.svc.getCompetitionTable(this.competitionid,games).subscribe(result => {
           this.standings = result.standing; 
           this.standings.forEach(s => {

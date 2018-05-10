@@ -11,6 +11,7 @@ export class SoccerService {
     'X-Auth-Token' : '9a79602abb2645489a5ff6596df5b4fa'
   })};
   private url = 'http://api.football-data.org/v1'
+  private flagurl = 'https://restcountries.eu/rest/v2/name/'
   constructor(private http : HttpClient) { }
 
   
@@ -34,9 +35,18 @@ export class SoccerService {
     return this.http.get<competitionTeams.RootObject>(this.url + `/competitions/${id}/teams`, this.httpOptions);
   }
 
-  getTeamFromURL(urlvar): Observable<Team.RootObject>{
-    return this.http.get<Team.RootObject>(urlvar, this.httpOptions);
+  getTeam(id:number): Observable<Team.RootObject> {
+    return this.http.get<Team.RootObject>(this.url + `/teams/${id}`, this.httpOptions);
   }
+
+  getPlayers(id:number): Observable<Players.RootObject>{
+    return this.http.get<Players.RootObject>(this.url + `/teams/${id}/players`, this.httpOptions)
+  }
+
+  getFlag(country:string): Observable<FlagRootObject[]>{
+    return this.http.get<FlagRootObject[]>(this.flagurl + `${country}?fullText=true&fields=flag`)
+  }
+
 }
 
 export namespace competitions{
@@ -256,6 +266,9 @@ export namespace Team{
     shortName: string;
     squadMarketValue?: any;
     crestUrl: string;
+    currentPlace: string;
+    currentLeague: string;
+    currenPoints: string;
   }
 
 }
@@ -308,4 +321,42 @@ export namespace competitionTeams{
     teams: Team[];
   }
 
+}
+
+export namespace Players {
+
+  export interface Self {
+      href: string;
+  }
+
+  export interface Team {
+      href: string;
+  }
+
+  export interface Links {
+      self: Self;
+      team: Team;
+  }
+
+  export interface Player {
+      name: string;
+      position: string;
+      jerseyNumber: number;
+      dateOfBirth: string;
+      nationality: string;
+      contractUntil: string;
+      marketValue?: any;
+      nationalityFlag: string;
+  }
+
+  export interface RootObject {
+      _links: Links;
+      count: number;
+      players: Player[];
+  }
+
+}
+
+export interface FlagRootObject {
+  flag: string;
 }

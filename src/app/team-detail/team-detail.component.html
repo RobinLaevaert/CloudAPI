@@ -1,3 +1,65 @@
-<p>
-  team-detail works!
-</p>
+
+<div class="card"  id="TeamKaart" ng-if="TeamObject" >
+  <img src="{{TeamObject.crestUrl}}" class="img-fluid" id="crest" >
+  <div id="tekst" >
+    <h1 >{{TeamObject.name}}</h1>
+    <br>
+    <h3>{{TeamObject.currentLeague}}</h3>
+    <br>
+    <br>
+    <h4 id="Place">{{TeamObject.currentPlace}}</h4>  <h4 id="Points">{{TeamObject.currenPoints}}</h4>
+  </div>
+</div>
+
+<div class="card"  id="PlayerKaart" ng-if="players">
+    <div class="card-body">
+        <div id="Head"><h2>Players:</h2></div>
+        <table class="table table-hover" id="tabell" mdnTooltip>
+          
+            <thead class="text-center">
+                
+            </thead>
+            <tbody>
+                <tr id="Fieldpos">Keepers</tr>
+                <tr *ngFor="let k of Keepers" mdbTooltip>
+                    <td id="row" id="Jersey">{{k.jerseyNumber}}</td>
+                    <td id="row" ng-if="k.nationalityFlag"><img src="{{k.nationalityFlag}}" class="img-fluid" id="flag" mdbToolTip="{{k.nationality}}"></td>
+                    <td id="row">{{k.name}}</td>
+                    <td id="row">{{k.position}}</td>
+                </tr>
+                <tr id="Fieldpos">Defenders</tr>
+                <tr *ngFor="let d of Defenders" ng-if="Defenders">
+                        <td id="row" id="Jersey">{{d.jerseyNumber}}</td>
+                        <td id="row" ng-if="d.nationalityFlag"><img src="{{d.nationalityFlag}}" class="img-fluid" id="flag" mdbToolTip="{{d.nationality}}"></td>
+                        <td id="row">{{d.name}}</td>
+                        <td id="row">{{d.position}}</td>
+                </tr>
+            </tbody>
+          </table>
+
+          <table class="table table-hover" id="tabelr" mdnTooltip>
+          
+                <thead class="text-center">
+                    
+                  </thead>
+                <tbody>
+                        <tr id="Fieldpos">Midfielders</tr>
+                    <tr *ngFor="let m of Midfielders" mdbTooltip>
+                            <td id="row" id="Jersey">{{m.jerseyNumber}}</td>
+                            <td id="row" ng-if="p.nationalityFlag"><img src="{{m.nationalityFlag}}" class="img-fluid" id="flag" mdbToolTip="{{m.nationality}}"></td>
+                            <td id="row">{{m.name}}</td>
+                            <td id="row">{{m.position}}</td>
+                    </tr>
+                    <tr id="Fieldpos">Attackers</tr>
+                    <tr *ngFor="let a of Attackers" mdbTooltip>
+                            <td id="row" id="Jersey">{{a.jerseyNumber}}</td>
+                            <td id="row" ng-if="a.nationalityFlag"><img src="{{a.nationalityFlag}}" class="img-fluid" id="flag" mdbToolTip="{{a.nationality}}"></td>
+                            <td id="row">{{a.name}}</td>
+                            <td id="row">{{a.position}}</td>
+                    </tr>
+                </tbody>
+              </table>
+    </div>
+</div>
+         
+
