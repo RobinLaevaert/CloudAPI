@@ -11,33 +11,33 @@
   </div>
 </div>
 
-<div class="card"  id="PlayerKaart" ng-if="players">
+<div class="card"  id="PlayerKaart" *ngIf="players">
     <div class="card-body">
         <div id="Head"><h2>Players:</h2></div>
-        <table class="table table-hover" id="tabell" mdnTooltip>
+        <table class="table table-hover" id="tabell" >
           
             <thead class="text-center">
                 
             </thead>
-            <tbody>
-                <tr id="Fieldpos">Keepers</tr>
+            <tbody >
+                <tr id="Fieldpos" >Keepers</tr>
                 <tr *ngFor="let k of Keepers" mdbTooltip>
                     <td id="row" id="Jersey">{{k.jerseyNumber}}</td>
-                    <td id="row" ng-if="k.nationalityFlag"><img src="{{k.nationalityFlag}}" alt="" class="img-fluid" id="flag" mdbToolTip="{{k.nationality}}"></td>
+                    <td id="row" mdbTooltip='{{k.nationality}}'><img src="{{k.nationalityFlag}}" alt="" class="img-fluid" id="flag"></td>
                     <td id="row">{{k.name}}</td>
                     <td id="row">{{k.position}}</td>
                 </tr>
                 <tr id="Fieldpos">Defenders</tr>
-                <tr *ngFor="let d of Defenders" ng-if="Defenders">
+                <tr *ngFor="let d of Defenders" mdbTooltip>
                         <td id="row" id="Jersey">{{d.jerseyNumber}}</td>
-                        <td id="row" ng-if="d.nationalityFlag"><img src="{{d.nationalityFlag}}" class="img-fluid" id="flag" mdbToolTip="{{d.nationality}}"></td>
+                        <td id="row" mdbTooltip='{{d.nationality}}'><img src="{{d.nationalityFlag}}" class="img-fluid" id="flag"></td>
                         <td id="row">{{d.name}}</td>
                         <td id="row">{{d.position}}</td>
                 </tr>
             </tbody>
           </table>
 
-          <table class="table table-hover" id="tabelr" mdnTooltip>
+          <table class="table table-hover" id="tabelr">
           
                 <thead class="text-center">
                     
@@ -46,14 +46,14 @@
                         <tr id="Fieldpos">Midfielders</tr>
                     <tr *ngFor="let m of Midfielders" mdbTooltip>
                             <td id="row" id="Jersey">{{m.jerseyNumber}}</td>
-                            <td id="row" ng-if="p.nationalityFlag"><img src="{{m.nationalityFlag}}" class="img-fluid" id="flag" mdbToolTip="{{m.nationality}}"></td>
+                            <td id="row"mdbTooltip='{{m.nationality}}'><img src="{{m.nationalityFlag}}" class="img-fluid" id="flag"></td>
                             <td id="row">{{m.name}}</td>
                             <td id="row">{{m.position}}</td>
                     </tr>
                     <tr id="Fieldpos">Attackers</tr>
                     <tr *ngFor="let a of Attackers" mdbTooltip>
                             <td id="row" id="Jersey">{{a.jerseyNumber}}</td>
-                            <td id="row" ng-if="a.nationalityFlag"><img src="{{a.nationalityFlag}}" class="img-fluid" id="flag" mdbToolTip="{{a.nationality}}"></td>
+                            <td id="row" mdbTooltip='{{a.nationality}}'><img src="{{a.nationalityFlag}}" class="img-fluid" id="flag"></td>
                             <td id="row">{{a.name}}</td>
                             <td id="row">{{a.position}}</td>
                     </tr>
@@ -61,5 +61,27 @@
               </table>
     </div>
 </div>
+
+<div class="card"  id="FixturesKaart" *ngIf="TeamObject" >
+    <div class="card-body">
+      <div id="Head"><h2>Matches:</h2></div>
+      <table class="table table-hover">
+        
+          <thead class="text-center">
+              
+            </thead>
+          <tbody>
+              <tr *ngFor="let l of Fixtures" mdbTooltip>
+                  <td id="position"><span id="time">{{l.date|date:"HH:mm"}}</span><br> {{l.date |date:"dd MMMM"}}</td>
+                  <td id="row"><img src={{l.crestHomeTeam}} alt="" id="FixturesCrest"></td>
+                  <td id="row">{{l.homeTeamName}}</td>
+                  <td id="row">{{l.result.goalsHomeTeam}} &nbsp; v &nbsp; {{l.result.goalsAwayTeam}}</td>
+                  <td id="row">{{l.awayTeamName}}</td>
+                  <td id="row"><img src={{l.crestAwayTeam}} id="FixturesCrest"></td>
+              </tr>
+          </tbody>
+        </table>
+  </div>
+  </div>
          
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SoccerService, Team, League, Players } from '../services/soccer.service';
+import { SoccerService, Team, League, Players, TeamFixtures } from '../services/soccer.service';
 
 
 
@@ -20,6 +20,7 @@ export class TeamDetailComponent implements OnInit {
   Attackers: Players.Player[] =[];
   Keepers: Players.Player[] = [];
   players: Players.Player[];
+  Fixtures: TeamFixtures.Fixture[];
   
   constructor(private svc : SoccerService) { }
 
@@ -46,6 +47,40 @@ export class TeamDetailComponent implements OnInit {
             }
           }
         })
+
+        this.svc.getTeamFixtures(this.id).subscribe(result =>{
+          this.Fixtures = result.fixtures;
+          this.Fixtures.reverse();
+          this.Fixtures.forEach(s => {
+            if(+(s._links.competition.href.slice(45)) == this.competitionid){
+              this.standings.forEach(r =>{
+                if(s.homeTeamName == r.teamName){s.crestHomeTeam = r.crestURI}
+                if(s.awayTeamName == r.teamName){s.crestAwayTeam = r.crestURI}
+              })
+            }
+            else{/*
+              
+              
+              })*/
+              if(s.homeTeamName == this.TeamObject.name){
+                s.crestHomeTeam = this.TeamObject.crestUrl;
+              }
+              else{
+                this.svc.getTeam(+(s._links.homeTeam.href.slice(38))).subscribe(res =>{
+                  s.crestHomeTeam = res.crestUrl;
+                })
+              }
+              if(s.awayTeamName == this.TeamObject.name){
+                s.crestAwayTeam = this.TeamObject.crestUrl;
+              }
+              else{
+                this.svc.getTeam(+(s._links.awayTeam.href.slice(38))).subscribe(res =>{
+                s.crestAwayTeam = res.crestUrl;})
+              }
+            }
+          });
+        })
+      
       })
     })
     
@@ -53,7 +88,6 @@ export class TeamDetailComponent implements OnInit {
     
     this.svc.getPlayers(this.id).subscribe(result =>{
       this.players = result.players;
-      
       
       this.players.forEach(p => {
         if(p.nationality == "England"){
@@ -67,9 +101,6 @@ export class TeamDetailComponent implements OnInit {
             p.nationalityFlag = res[0].flag;        
           })
         }
-        
-        
-        
       });
       
       this.players.forEach(p =>{
@@ -105,11 +136,26 @@ export class TeamDetailComponent implements OnInit {
             this.Attackers.push(p);
           break;
         }
-        
       })
-      
-      
     })
+      //teams = 38
+      //competitions = 45
+    /*this.svc.getTeamFixtures(this.id).subscribe(result =>{
+      this.Fixtures = result.fixtures;
+      this.Fixtures.forEach(s => {
+        if(+(s._links.competition.href.slice(45)) == this.competitionid){
+          
+        }
+        else{
+          this.svc.getTeam(+(s._links.homeTeam.href.slice(38))).subscribe(res =>{
+            s.crestHomeTeam = res.crestUrl;
+          })
+          this.svc.getTeam(+(s._links.awayTeam.href.slice(38))).subscribe(res =>{
+            s.crestAwayTeam = res.crestUrl;
+          })
+        }
+      });
+    })*/
   }
 
 }

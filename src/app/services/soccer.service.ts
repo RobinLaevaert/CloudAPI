@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 export class SoccerService {
   httpOptions = {
     headers: new HttpHeaders({
-    'X-Auth-Token' : '9a79602abb2645489a5ff6596df5b4fa'
+    'X-Auth-Token' : '9a79602abb2645489a5ff6596df5b4fa',
   })};
   private url = 'http://api.football-data.org/v1'
   private flagurl = 'https://restcountries.eu/rest/v2/name/'
@@ -40,11 +40,15 @@ export class SoccerService {
   }
 
   getPlayers(id:number): Observable<Players.RootObject>{
-    return this.http.get<Players.RootObject>(this.url + `/teams/${id}/players`, this.httpOptions)
+    return this.http.get<Players.RootObject>(this.url + `/teams/${id}/players`, this.httpOptions);
   }
 
   getFlag(country:string): Observable<FlagRootObject[]>{
-    return this.http.get<FlagRootObject[]>(this.flagurl + `${country}?fullText=true&fields=flag`)
+    return this.http.get<FlagRootObject[]>(this.flagurl + `${country}?fullText=true&fields=flag`);
+  }
+
+  getTeamFixtures(id:number):Observable<TeamFixtures.RootObject>{
+    return this.http.get<TeamFixtures.RootObject>(this.url+ `/teams/${id}/fixtures`, this.httpOptions);
   }
 
 }
@@ -360,3 +364,81 @@ export namespace Players {
 export interface FlagRootObject {
   flag: string;
 }
+
+export namespace TeamFixtures {
+
+  export interface Self {
+    href: string;
+  }
+
+  export interface Team {
+    href: string;
+  }
+
+  export interface Links {
+    self: Self;
+    team: Team;
+  }
+
+  export interface Self2 {
+    href: string;
+  }
+
+  export interface Competition {
+    href: string;
+  }
+
+  export interface HomeTeam {
+    href: string;
+  }
+
+  export interface AwayTeam {
+    href: string;
+  }
+
+  export interface Links2 {
+    self: Self2;
+    competition: Competition;
+    homeTeam: HomeTeam;
+    awayTeam: AwayTeam;
+  }
+
+  export interface HalfTime {
+    goalsHomeTeam: number;
+    goalsAwayTeam: number;
+  }
+
+  export interface Result {
+    goalsHomeTeam?: number;
+    goalsAwayTeam?: number;
+    halfTime: HalfTime;
+  }
+
+  export interface Odds {
+    homeWin: number;
+    draw: number;
+    awayWin: number;
+  }
+
+  export interface Fixture {
+    _links: Links2;
+    date: Date;
+    status: string;
+    matchday: number;
+    homeTeamName: string;
+    awayTeamName: string;
+    crestHomeTeam: string;
+    crestAwayTeam: string;
+    result: Result;
+    odds: Odds;
+  }
+
+  export interface RootObject {
+    _links: Links;
+    season: string;
+    count: number;
+    fixtures: Fixture[];
+  }
+
+}
+

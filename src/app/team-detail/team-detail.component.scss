@@ -1,5 +1,5 @@
 #TeamKaart{
-    width: 38%;
+    width: 43%;
     margin: 0.75%;
     padding: 1em;
     flex-direction: row;
@@ -7,12 +7,21 @@
     float: left;
 }
 #PlayerKaart{
-    width: 58%;
+    width: 53%;
     margin: 0.75%;
     padding: 1em;
     
     vertical-align: middle; 
     float: right;
+}
+#FixturesKaart{
+    width: 43%;
+    margin: 0.75%;
+    padding: 1em;
+    height: 35em;
+    vertical-align: middle;  
+    float: left;
+    overflow: auto
 }
 #Rowfixer{
     flex-direction: row;
@@ -72,9 +81,17 @@ h1{
 }
 #row{
     height: 60px;
+    
 }
 #Fieldpos{
     height: 60px;
     width: 11em;
     
+}
+#FixturesCrest{
+    height: 40px;
+}
+td{
+    text-align: center;
+    vertical-align: middle
 }
