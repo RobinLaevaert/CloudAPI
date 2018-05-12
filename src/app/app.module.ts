@@ -39,7 +39,7 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent},
       { path: 'competition/:compid', component: CompetitionComponent},
-      { path: 'competition/:compid/team/:teamid', component: TeamDetailComponent},
+      { path: 'team/:teamid', component: TeamDetailComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}
     ], { useHash: true }),

@@ -13,7 +13,6 @@
 
 <div class="card"  id="PlayerKaart" *ngIf="players">
     <div class="card-body">
-        <div id="Head"><h2>Players:</h2></div>
         <table class="table table-hover" id="tabell" >
           
             <thead class="text-center">
@@ -75,7 +74,7 @@
                   <td id="position"><span id="time">{{l.date|date:"HH:mm"}}</span><br> {{l.date |date:"dd MMMM"}}</td>
                   <td id="row"><img src={{l.crestHomeTeam}} alt="" id="FixturesCrest"></td>
                   <td id="row">{{l.homeTeamName}}</td>
-                  <td id="row">{{l.result.goalsHomeTeam}} &nbsp; v &nbsp; {{l.result.goalsAwayTeam}}</td>
+                  <td id="row">{{l.result.goalsHomeTeam}} v {{l.result.goalsAwayTeam}}</td>
                   <td id="row">{{l.awayTeamName}}</td>
                   <td id="row"><img src={{l.crestAwayTeam}} id="FixturesCrest"></td>
               </tr>

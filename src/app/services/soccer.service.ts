@@ -51,6 +51,10 @@ export class SoccerService {
     return this.http.get<TeamFixtures.RootObject>(this.url+ `/teams/${id}/fixtures`, this.httpOptions);
   }
 
+  getTeamFromName(name:string): Observable<LookupTeam.RootObject>{
+    return this.http.get<LookupTeam.RootObject>(this.url+ `/teams/?name=${name}`, this.httpOptions);
+  }
+
 }
 
 export namespace competitions{
@@ -441,4 +445,29 @@ export namespace TeamFixtures {
   }
 
 }
+
+export namespace LookupTeam{
+  export interface Self {
+    href: string;
+  }
+
+  export interface Links {
+    self: Self;
+  }
+
+  export interface Team {
+    id: number;
+    name: string;
+    currentCompetition: number;
+    currentLeague: string;
+  }
+
+  export interface RootObject {
+    _links: Links;
+    searchQuery: string;
+    count: number;
+    teams: Team[];
+  }
+}
+
 

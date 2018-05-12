@@ -2,8 +2,9 @@
  
  
 <p id="SpeelRondeTitel">Speelronde: </p>
-  <select class="browser-default" [(ngModel)] = "speeldag">
+  <select class="browser-default" [(ngModel)] = "speelronde">
     <option value="" disabled selected>Choose your option</option>
+    <option *ngFor="let r of speelrondes" [value]="r">{{r}}</option>
     <!-- ngFor voor alle speeldagen-->
 </select>
 
@@ -12,5 +13,5 @@
 </div>
 
 
-<app-standings></app-standings>
-<app-fixtures></app-fixtures>
+<app-standings [childMessage]="speelronde" [childMessage1]="competitie" [childMessage2]="shortcomp"></app-standings>
+<app-fixtures [childMessage]="speelronde" [childMessage1]="competitie" [childMessage2]="shortcomp"></app-fixtures>
