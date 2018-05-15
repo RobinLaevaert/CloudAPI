@@ -19,6 +19,7 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,  
@@ -30,6 +31,7 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
     FixturesComponent,
     CompetitionComponent,
     TeamDetailComponent,
+    
 
   ],
   imports: [
@@ -40,6 +42,7 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
       { path: 'home', component: HomeComponent},
       { path: 'competition/:compid', component: CompetitionComponent},
       { path: 'team/:teamid', component: TeamDetailComponent},
+      
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}
     ], { useHash: true }),
