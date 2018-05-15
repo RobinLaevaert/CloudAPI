@@ -54,8 +54,8 @@ export class FixturesComponent implements OnInit {
           else if(s.result.goalsHomeTeam<s.result.goalsAwayTeam){
             s.result.draw = false;
             s.result.homeTeamWon = false;
-            s.result.homeTeamColor = "green";
-            s.result.awayTeamColor = "red";
+            s.result.homeTeamColor = "red";
+            s.result.awayTeamColor = "green";
           }}
           else{
             s.result.draw = false;
@@ -81,7 +81,7 @@ export class FixturesComponent implements OnInit {
                 
               } 
             }
-            else if(r.name == s.homeTeamName){
+            if(r.name == s.homeTeamName){
               s.homeTeamCrest = r.crestUrl;
               s.homeTeamShortName = r.shortName.toLowerCase();
               

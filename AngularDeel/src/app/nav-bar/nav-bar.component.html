@@ -5,16 +5,16 @@
     <links>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" [routerLinkActive]="['active']">
-                <a class="nav-link waves-light" [routerLink]="['/competition/pl']" mdbRippleRadius>PremierLeague <span class="sr-only">(current)</span></a>
+                <a class="nav-link waves-light" [routerLink]="['/competition/pl']" [childMessage4]="1" mdbRippleRadius>PremierLeague <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" [routerLinkActive]="['active']">
-                <a class="nav-link waves-light" [routerLink]="['/competition/bl1']" mdbRippleRadius>BundesLiga</a>
+                <a class="nav-link waves-light" [routerLink]="['/competition/bl1']" [childMessage4]="2" mdbRippleRadius>BundesLiga</a>
             </li>
             <li class="nav-item" [routerLinkActive]="['active']">
-                <a class="nav-link waves-light" [routerLink]="['/competition/pd']" mdbRippleRadius>LaLiga</a>
+                <a class="nav-link waves-light" [routerLink]="['/competition/pd']" [childMessage4]="3" mdbRippleRadius>LaLiga</a>
             </li>
             <li class="nav-item" [routerLinkActive]="['active']">
-                <a class="nav-link waves-light" [routerLink]="['/competition/fl1']" mdbRippleRadius>Ligue1</a>
+                <a class="nav-link waves-light" [routerLink]="['/competition/fl1']" [childMessage4]="4" mdbRippleRadius>Ligue1</a>
             </li>
         </ul>
     </links>

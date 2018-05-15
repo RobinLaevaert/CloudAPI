@@ -58,10 +58,16 @@ export class TeamDetailComponent implements OnInit {
             this.Fixtures = result.fixtures;
             this.Fixtures.reverse();
             this.Fixtures.forEach(s => {
-              if(+(s._links.competition.href.slice(45)) == this.competitionid){
+              
+              if(+(s._links.competition.href.slice(45)) == +this.competitionid){
+                console.log("test")
                 this.standings.forEach(r =>{
-                  if(s.homeTeamName == r.teamName){s.crestHomeTeam = r.crestURI}
-                  if(s.awayTeamName == r.teamName){s.crestAwayTeam = r.crestURI}
+                  console.log(r.teamName);
+                  console.log(s.homeTeamName); 
+                  if(s.homeTeamName == "FC Bayern München"){ s.crestHomeTeam = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg/512px-FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg.png"}
+                  else if(s.awayTeamName == "FC Bayern München"){s.crestAwayTeam  = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg/512px-FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg.png"}
+                  else if(s.homeTeamName == r.teamName){s.crestHomeTeam = r.crestURI}
+                  else if(s.awayTeamName == r.teamName){s.crestAwayTeam = r.crestURI}
                 })
               }
               else{
