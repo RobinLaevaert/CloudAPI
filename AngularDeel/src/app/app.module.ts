@@ -3,7 +3,6 @@ import { NgModule,  NO_ERRORS_SCHEMA, Component  } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -15,6 +14,9 @@ import { FormsModule } from '@angular/forms';
 import { SoccerService } from './services/soccer.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
+import { GamesComponent } from './games/games.component';
+import { GameService } from './services/game.service';
+import { ApipostComponent } from './apipost/apipost.component';
 
 
 
@@ -31,6 +33,8 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
     FixturesComponent,
     CompetitionComponent,
     TeamDetailComponent,
+    GamesComponent,
+    ApipostComponent,
     
 
   ],
@@ -42,7 +46,8 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
       { path: 'home', component: HomeComponent},
       { path: 'competition/:compid', component: CompetitionComponent},
       { path: 'team/:teamid', component: TeamDetailComponent},
-      
+      { path: 'gaming', component:GamesComponent},
+      { path: 'gaming/new/:type', component: ApipostComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}
     ], { useHash: true }),
@@ -51,7 +56,7 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
   
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [SoccerService],
+  providers: [SoccerService, GameService],
   bootstrap: [AppComponent]
   
 })

@@ -1,0 +1,52 @@
+Gaming still works
+<div class="card" id="kaart">
+  <div class="card-body">
+      <table class="table table-hover">
+          <thead >
+              <tr mdbTooltip>
+                  <th id="row">ID</th>
+                  <th id="row">Name</th>
+                  <th id="row">Category</th>
+                  <th id="row">Price</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let g of games"mdbTooltip>
+                  <td id="position">{{g.id}}</td>
+                  <td id="row">{{g.title}}</td>
+                  <td id="row">{{g.category}}</td>
+                  <td id="row">{{g.price}}</td>
+              </tr>
+              <tr>
+                  <td><button type="button" class="btn btn-primary waves-light" (click)="KnopClick()" mdbRippleRadius>Primary</button></td>
+                  <td id="row"><input type="text" name="text" id="form1" [(ngModel)]="Title" class="form-control"></td>
+                  <td id="row"><input type="text" name="text" id="form1" [(ngModel)]="Category" class="form-control"></td>
+                  <td id="row"><input type="text" name="text" id="form1" [(ngModel)]="Price" class="form-control"></td>
+              </tr>
+          </tbody>
+        </table>
+  </div>
+
+</div>
+
+<div class="card" id="kaart">
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead >
+                <tr mdbTooltip>
+                    <th id="row">ID</th>
+                    <th id="row">Name</th>
+                    <th id="row">Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of studios"mdbTooltip>
+                    <td id="position">{{s.id}}</td>
+                    <td id="row">{{s.name}}</td>
+                    <td id="row">{{s.location}}</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+  
+  </div>
