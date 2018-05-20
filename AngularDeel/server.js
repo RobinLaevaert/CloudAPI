@@ -44,7 +44,7 @@ server.get('/', (req, res, next) => {
     //if no cookie, then redirect to Login page
     if (!cookie) {
         console.log("!cookie");
-        res.redirect("login.html")
+        res.redirect("login.html");
     }
     else
         return next();

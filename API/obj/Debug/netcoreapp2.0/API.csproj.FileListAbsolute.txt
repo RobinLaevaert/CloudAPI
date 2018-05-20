@@ -1,0 +1,11 @@
+E:\Users\robin\Desktop\CloudAPI\API\bin\Debug\netcoreapp2.0\API.deps.json
+E:\Users\robin\Desktop\CloudAPI\API\bin\Debug\netcoreapp2.0\API.runtimeconfig.json
+E:\Users\robin\Desktop\CloudAPI\API\bin\Debug\netcoreapp2.0\API.runtimeconfig.dev.json
+E:\Users\robin\Desktop\CloudAPI\API\bin\Debug\netcoreapp2.0\API.dll
+E:\Users\robin\Desktop\CloudAPI\API\bin\Debug\netcoreapp2.0\API.pdb
+E:\Users\robin\Desktop\CloudAPI\API\obj\Debug\netcoreapp2.0\API.csprojResolveAssemblyReference.cache
+E:\Users\robin\Desktop\CloudAPI\API\obj\Debug\netcoreapp2.0\API.csproj.CoreCompileInputs.cache
+E:\Users\robin\Desktop\CloudAPI\API\obj\Debug\netcoreapp2.0\API.AssemblyInfoInputs.cache
+E:\Users\robin\Desktop\CloudAPI\API\obj\Debug\netcoreapp2.0\API.AssemblyInfo.cs
+E:\Users\robin\Desktop\CloudAPI\API\obj\Debug\netcoreapp2.0\API.dll
+E:\Users\robin\Desktop\CloudAPI\API\obj\Debug\netcoreapp2.0\API.pdb
