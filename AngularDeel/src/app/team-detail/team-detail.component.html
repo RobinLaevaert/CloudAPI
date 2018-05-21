@@ -19,14 +19,14 @@
                 
             </thead>
             <tbody >
-                <tr id="Fieldpos" >Keepers</tr>
+                <tr id="row"><td colspan="4" id="row"><div id="divField"><h3 id="FieldPosition">Keepers</h3></div></td></tr>
                 <tr *ngFor="let k of Keepers" mdbTooltip>
                     <td id="row" id="Jersey">{{k.jerseyNumber}}</td>
                     <td id="row" mdbTooltip='{{k.nationality}}'><img src="{{k.nationalityFlag}}" alt="" class="img-fluid" id="flag"></td>
                     <td id="row">{{k.name}}</td>
                     <td id="row">{{k.position}}</td>
                 </tr>
-                <tr id="Fieldpos">Defenders</tr>
+                <tr id="row"><td colspan="4" id="row"><div id="divField"><h3 id="FieldPosition">Defenders</h3></div></td></tr>
                 <tr *ngFor="let d of Defenders" mdbTooltip>
                         <td id="row" id="Jersey">{{d.jerseyNumber}}</td>
                         <td id="row" mdbTooltip='{{d.nationality}}'><img src="{{d.nationalityFlag}}" class="img-fluid" id="flag"></td>
@@ -42,14 +42,14 @@
                     
                   </thead>
                 <tbody>
-                        <tr id="Fieldpos">Midfielders</tr>
+                    <tr id="row"><td colspan="4" id="row"><div id="divField"><h3 id="FieldPosition">Midfielders</h3></div></td></tr>
                     <tr *ngFor="let m of Midfielders" mdbTooltip>
                             <td id="row" id="Jersey">{{m.jerseyNumber}}</td>
                             <td id="row"mdbTooltip='{{m.nationality}}'><img src="{{m.nationalityFlag}}" class="img-fluid" id="flag"></td>
                             <td id="row">{{m.name}}</td>
                             <td id="row">{{m.position}}</td>
                     </tr>
-                    <tr id="Fieldpos">Attackers</tr>
+                    <tr id="row"><td colspan="4" id="row"><div id="divField"><h3 id="FieldPosition">Attackers</h3></div></td></tr>
                     <tr *ngFor="let a of Attackers" mdbTooltip>
                             <td id="row" id="Jersey">{{a.jerseyNumber}}</td>
                             <td id="row" mdbTooltip='{{a.nationality}}'><img src="{{a.nationalityFlag}}" class="img-fluid" id="flag"></td>

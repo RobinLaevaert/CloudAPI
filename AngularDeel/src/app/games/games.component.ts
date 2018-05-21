@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService, IGame, IStudio } from '../services/game.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-games',
@@ -13,7 +14,19 @@ export class GamesComponent implements OnInit {
   Title;
   Category;
   Price;
-  constructor(private svc: GameService) { }
+
+  game:boolean;
+  studio:boolean;
+  newTitle: string;
+  newCategory: string;
+  newPrice: number;
+  newCover: string;
+  
+  
+  newName: string;
+  newLocation: string;
+  newSite: string;
+  constructor(private svc: GameService, private router: Router) { }
 
   ngOnInit() {
     this.svc.getGames().subscribe(s => {
@@ -24,7 +37,25 @@ export class GamesComponent implements OnInit {
     })
   }
 
-  KnopClick(){
-    alert("Test" + this.Title + this.Category + this.Price);
+  KnopClick(type: string){
+    switch(type){
+      case "Studio":
+      this.studio = true;
+      break;
+      case "Game":
+      this.game = true;
+      break;
+    }
+  }
+
+  addGame(){
+    alert(this.newName + " " + this.newCategory + " " + this.newPrice + " " + this.newCover);
+    this.game = false;
+  }
+  addStudio(){
+    
+    
+    
+    this.studio = false
   }
 }

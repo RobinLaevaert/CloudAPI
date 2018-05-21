@@ -16,9 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { GamesComponent } from './games/games.component';
 import { GameService } from './services/game.service';
-import { ApipostComponent } from './apipost/apipost.component';
-
-
 
 
 
@@ -34,9 +31,6 @@ import { ApipostComponent } from './apipost/apipost.component';
     CompetitionComponent,
     TeamDetailComponent,
     GamesComponent,
-    ApipostComponent,
-    
-
   ],
   imports: [
     BrowserModule,
@@ -47,7 +41,6 @@ import { ApipostComponent } from './apipost/apipost.component';
       { path: 'competition/:compid', component: CompetitionComponent},
       { path: 'team/:teamid', component: TeamDetailComponent},
       { path: 'gaming', component:GamesComponent},
-      { path: 'gaming/new/:type', component: ApipostComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}
     ], { useHash: true }),
