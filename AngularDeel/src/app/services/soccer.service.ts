@@ -54,6 +54,7 @@ export class SoccerService {
   getTeamFromName(name:string): Observable<LookupTeam.RootObject>{
     return this.http.get<LookupTeam.RootObject>(this.url+ `/teams/?name=${name}`, this.httpOptions);
   }
+ 
 
 }
 

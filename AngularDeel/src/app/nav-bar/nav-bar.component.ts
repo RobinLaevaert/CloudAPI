@@ -9,11 +9,14 @@ export class NavBarComponent implements OnInit {
 
   constructor() { }
 
-  
+  searchString: string ;
   ngOnInit() {
   }
 
  
+  Search(){
+
+  }
   
 }
 

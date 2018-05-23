@@ -10,6 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using API.Model;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 
 namespace API
 {
@@ -33,6 +35,8 @@ namespace API
 
             services.AddMvc();
             services.AddCors();
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +47,7 @@ namespace API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseMvc();
             DBInitializer.Initialize(libContext);
         }

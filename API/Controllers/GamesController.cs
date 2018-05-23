@@ -55,6 +55,7 @@ namespace API.Controllers
 
         [HttpPost]
         public IActionResult CreateGame([FromBody] Game newGame) {
+            
             context.Games.Add(newGame);
             context.SaveChanges();
             return Created("", newGame);

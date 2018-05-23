@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService, IGame, IStudio } from '../services/game.service';
+import { GameService, IGame, IStudio, INewStudio } from '../services/game.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -22,7 +22,9 @@ export class GamesComponent implements OnInit {
   newPrice: number;
   newCover: string;
   
-  
+  studioselection: IStudio;
+  showStudio: boolean = true;
+  showGame: boolean = true;
   newName: string;
   newLocation: string;
   newSite: string;
@@ -35,6 +37,13 @@ export class GamesComponent implements OnInit {
     this.svc.getStudios().subscribe(s =>{
       this.studios = s;
     })
+    
+    
+    
+  }
+
+  ngOnChanges(){
+    this.Load();
   }
 
   KnopClick(type: string){
@@ -54,8 +63,19 @@ export class GamesComponent implements OnInit {
   }
   addStudio(){
     
-    
-    
+    var newStudio: INewStudio = {name: "Ubisoft", site: "ubisoft.com", location: "France"};
+    this.svc.addStudio(newStudio).subscribe(s =>{console.log(s);this.Load(); });
     this.studio = false
+    
+    
+  }
+
+  Load(){
+    this.svc.getGames().subscribe(s => {
+      this.games = s;
+    })
+    this.svc.getStudios().subscribe(s =>{
+      this.studios = s;
+    })
   }
 }

@@ -9,7 +9,7 @@ export class GameService {
   constructor(private http : HttpClient) { }
   httpOptions = {
     headers: new HttpHeaders({
-    'MS-ASPNETCORE-TOKEN' : '54cd74af-2537-4d5e-8f4d-3500c1909e46',
+    'Access-Control-Allow-Origin':"*"
   })};
   private url = 'http://localhost:4300/api/v1'
 
@@ -35,8 +35,8 @@ export class GameService {
     return this.http.get<IStudio>(this.url + `/studios/${id}`);
   }
 
-  addStudio(): Observable<IStudio>{
-    return this.http.post<IStudio>(this.url + `/studios`, {});
+  addStudio(newStudio: INewStudio): Observable<IStudio>{
+    return this.http.post<IStudio>(this.url + `/studios`, newStudio, this.httpOptions);
   }
   
 

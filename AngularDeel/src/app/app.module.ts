@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { GamesComponent } from './games/games.component';
 import { GameService } from './services/game.service';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -31,6 +32,7 @@ import { GameService } from './services/game.service';
     CompetitionComponent,
     TeamDetailComponent,
     GamesComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { GameService } from './services/game.service';
       { path: 'home', component: HomeComponent},
       { path: 'competition/:compid', component: CompetitionComponent},
       { path: 'team/:teamid', component: TeamDetailComponent},
+      { path: 'team/search/:search', component:SearchComponent},
       { path: 'gaming', component:GamesComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: "**", component: PageNotFoundComponent}

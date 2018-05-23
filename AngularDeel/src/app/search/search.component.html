@@ -1,0 +1,21 @@
+<div class="card" id="kaart">
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr mdbTooltip>
+                    <th id="row">ID</th>
+                    <th id="row">Name</th>
+                    <th id="row">Competition</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="searchResult">
+                <tr *ngFor="let s of searchResult.teams" [routerLink]='["/team/" + s.name]' mdbTooltip>
+                    <td id="position">{{s.id}}</td>
+                    <td id="row">{{s.name}}</td>
+                    <td id="row">{{s.currentLeague}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
