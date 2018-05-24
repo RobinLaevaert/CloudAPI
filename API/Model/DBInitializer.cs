@@ -19,7 +19,7 @@ namespace API.Model
                 var CDProjectRed = new Studio()
                 {
                     Games = new List<Game>(),
-                    Name = "CD Project Red",
+                    Name = "CDProjekt Red",
                     Location = "Poland",
                     Site = "http://en.cdprojektred.com/",
                 };
@@ -44,6 +44,49 @@ namespace API.Model
                 
                 context.Studios.Add(Dice);
 
+                var Bluehole = new Studio()
+                {
+                    Name = "Bluehole",
+                    Location = "South-Korea",
+                    Site = "https://www.bluehole.net/en/"
+                };
+
+
+                context.Studios.Add(Bluehole);
+
+                var Psyonix = new Studio()
+                {
+                    Name = "Psyonix",
+                    Location = "United States",
+                    Site = "https://psyonix.com/"
+                };
+
+
+                context.Studios.Add(Psyonix);
+
+
+                var witcher1 = new Game()
+                {
+                    Title = "The Witcher",
+                    Category = "ActionRPG",
+                    Studio = CDProjectRed,
+                    Price = 19.99,
+                    Cover = "https://images-na.ssl-images-amazon.com/images/I/81odfR7UoUL._SY445_.jpg",
+
+                };
+                context.Games.Add(witcher1);
+
+                var witcher2 = new Game()
+                {
+                    Title = "The Witcher 2: Assassin of Kings",
+                    Category = "ActionRPG",
+                    Studio = CDProjectRed,
+                    Price = 9.99,
+                    Cover = "http://zalu.be/wp-content/uploads/2011/06/assoking.jpg",
+
+                };
+                context.Games.Add(witcher2);
+
                 var game = new Game()
                 {
                     Title = "The Witcher 3: Wild Hunt",
@@ -54,6 +97,8 @@ namespace API.Model
 
                 };
                 context.Games.Add(game);
+
+
 
                 var CounterStrike = new Game()
                 {
@@ -66,6 +111,27 @@ namespace API.Model
                 };
                 context.Games.Add(CounterStrike);
 
+                var BattleField3 = new Game()
+                {
+                    Title = "BattleField 3",
+                    Category = "First Person Shooter",
+                    Studio = Dice,
+                    Price = 19.99,
+                    Cover = "https://www.licente-jocuri.ro/image/data/imported_games/battlefield-3-592.jpg"
+                };
+                context.Games.Add(BattleField3);
+
+                var BattleField4 = new Game()
+                {
+                    Title = "BattleField 4",
+                    Category = "First Person Shooter",
+                    Studio = Dice,
+                    Price = 19.99,
+                    Cover = "https://static.posters.cz/image/750/poster/battlefield-4-cover-i14536.jpg"
+                };
+                context.Games.Add(BattleField4);
+
+
                 var BattleField = new Game()
                 {
                     Title = "BattleField 1",
@@ -76,9 +142,48 @@ namespace API.Model
                 };
                 context.Games.Add(BattleField);
 
-                
-                
-                
+                var portal = new Game()
+                {
+                    Title = "Portal",
+                    Category = "Puzzle",
+                    Studio = Valve,
+                    Price = 8.19,
+                    Cover = "https://vignette.wikia.nocookie.net/half-life/images/6/6f/Portal.jpg/revision/latest?cb=20081209155217&path-prefix=en"
+                };
+                context.Games.Add(portal);
+
+                var portal2 = new Game()
+                {
+                    Title = "Portal 2",
+                    Category = "Puzzle",
+                    Studio = Valve,
+                    Price = 16.79,
+                    Cover = "https://vignette.wikia.nocookie.net/half-life/images/8/89/Portal_2_cover.jpg/revision/latest?cb=20110102221935&path-prefix=en"
+                };
+                context.Games.Add(portal2);
+
+                var pubg = new Game()
+                {
+                    Title = "Polayer Unknowns: Battlegrounds",
+                    Category = "Action",
+                    Studio = Bluehole,
+                    Price = 29.99,
+                    Cover = "https://static.giantbomb.com/uploads/scale_small/8/87790/2955325-box_pubg.png"
+                };
+                context.Games.Add(pubg);
+
+                var rocketo = new Game()
+                {
+                    Title = "Rocket League",
+                    Category = "Racing",
+                    Studio = Psyonix,
+                    Price = 19.99,
+                    Cover = "https://microplay.com/media/catalog/product/cache/small_image/350x438/e9c3970ab036de70892d86c6d221abfe/6/2/6251_cover_1.jpg"
+                };
+                context.Games.Add(rocketo);
+
+
+
 
                 context.SaveChanges();
 

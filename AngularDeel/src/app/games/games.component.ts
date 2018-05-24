@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService, IGame, IStudio, INewStudio } from '../services/game.service';
+import { GameService, IGame, IStudio, INewStudio, INewGame } from '../services/game.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,6 +15,8 @@ export class GamesComponent implements OnInit {
   Category;
   Price;
 
+  mdbtooltipURL : string = "https://vignette.wikia.nocookie.net/yogscast/images/0/0c/Witcher_3_cover_art.jpg/revision/latest?cb=20160705080448";
+
   game:boolean;
   studio:boolean;
   newTitle: string;
@@ -28,15 +30,48 @@ export class GamesComponent implements OnInit {
   newName: string;
   newLocation: string;
   newSite: string;
+
+  updateStudio: boolean = false;
+  updateStudioID;
+  updateStudioName;
+  updateStudioLocation;
+  updateStudioSite;
+
+  updateGame: boolean = false;
+  updateGameID;
+  updateGameTitle;
+  updateGameCategory;
+  updateGamePrice;
+  updateGameCover;
+  updateGameStudio;
+
+  Sorting = ["ID","Title", "Category", "Price"];
+  SortSelection = this.Sorting[0];
+  Direction = ["Ascending", "Descending"];
+  Direction1 = ["asc", "desc"];
+  DirectionSelection = this.Direction[0];
+  Searches = ["Title", "Category", "Price"]
+  SearchSelection = this.Searches[0];
+  SearchGame: string;
+
+  public html: string = '<img src=this.mdbtooltipURL>';
+  
+  pageNumber : number = 0;
+  numberOfPages: number;
+
+
+
   constructor(private svc: GameService, private router: Router) { }
 
   ngOnInit() {
     this.svc.getGames().subscribe(s => {
-      this.games = s;
+      this.games = s.games;
+      this.numberOfPages = s.pages;
     })
     this.svc.getStudios().subscribe(s =>{
       this.studios = s;
     })
+    
     
     
     
@@ -49,9 +84,11 @@ export class GamesComponent implements OnInit {
   KnopClick(type: string){
     switch(type){
       case "Studio":
+      this.clearUpdateAndAdd();    
       this.studio = true;
       break;
       case "Game":
+      this.clearUpdateAndAdd();    
       this.game = true;
       break;
     }
@@ -59,23 +96,130 @@ export class GamesComponent implements OnInit {
 
   addGame(){
     alert(this.newName + " " + this.newCategory + " " + this.newPrice + " " + this.newCover);
-    this.game = false;
+    var newGame: INewGame = {title: this.newTitle, category: this.newCategory, price: this.newPrice, cover: this.newCover, studio:this.studioselection};
+    this.svc.addGame(newGame).subscribe(s => {console.log(s); this.Load(); this.game = false;})
+    
   }
   addStudio(){
-    
     var newStudio: INewStudio = {name: "Ubisoft", site: "ubisoft.com", location: "France"};
-    this.svc.addStudio(newStudio).subscribe(s =>{console.log(s);this.Load(); });
-    this.studio = false
-    
+    this.svc.addStudio(newStudio).subscribe(s =>{console.log(s);this.Load(); this.game = false;});
     
   }
 
   Load(){
-    this.svc.getGames().subscribe(s => {
-      this.games = s;
+    this.svc.getGames(this.pageNumber).subscribe(s => {
+      this.games = s.games;
     })
     this.svc.getStudios().subscribe(s =>{
       this.studios = s;
     })
+  }
+
+  delete(id, type){
+    switch(type){
+      case 'studio':
+      this.svc.deleteStudio(id).subscribe(s => {
+        this.Load();
+      });
+      break;
+      case 'game':
+      this.svc.deleteGame(id).subscribe(s => {
+        this.Load();
+      });
+      break;
+    }
+    
+    
+  }
+  update(id, type, arrayID){
+    switch(type){
+      case 'studio':  
+      this.clearUpdateAndAdd();    
+      this.updateStudioID = id;
+      this.updateStudioLocation = this.studios[arrayID].location;
+      this.updateStudioName = this.studios[arrayID].name;
+      this.updateStudioSite = this.studios[arrayID].site;
+      this.updateStudio = true;
+      break;
+      case 'game':
+      this.clearUpdateAndAdd();    
+      this.updateGameID = id;
+      this.updateGameCategory = this.games[arrayID].category;
+      this.updateGameCover = this.games[arrayID].cover;
+      this.updateGameTitle = this.games[arrayID].title;
+      //this.updateGameStudio = this.games[arrayID].studio;
+      this.updateGamePrice = this.games[arrayID].price;
+      this.updateGame = true;
+      break;
+    }
+  }
+
+  put(type){
+    switch(type){
+      case 'studio':
+      var trueId = this.updateStudioID;     
+      var updateStudio: IStudio = {id: trueId, name: this.updateStudioName, site: this.updateStudioSite, location: this.updateStudioLocation};
+      this.svc.updateStudio(updateStudio).subscribe(s => {
+        this.updateStudio = false;
+        this.Load();
+      })
+      
+      break;
+      case 'game':
+      
+      this.updateGame = false;
+      break;
+    }
+  }
+
+  clearUpdateAndAdd(){ 
+    this.updateGame = false;
+    this.updateStudio = false;
+    this.game = false;
+    this.studio = false;
+  }
+
+  changeImage(coverURL: string){
+    this.mdbtooltipURL = coverURL;
+  }
+
+  nextPage(){
+    if(this.pageNumber == this.numberOfPages-1){
+
+    }
+    else{
+      this.pageNumber++;
+      this.Load();
+    }
+  }
+  previousPage(){
+    if(this.pageNumber == 0){
+
+    }
+    else{
+      this.pageNumber --
+      this.Load();
+    }
+
+  }
+
+  Search(){
+    this.pageNumber = 0;
+    this.SearchLoad();
+  }
+
+  SearchLoad(){
+    if(this.SearchGame != undefined){
+      this.svc.ASearch( this.pageNumber,this.SortSelection.toLowerCase(),this.Direction1[this.Direction.indexOf(this.DirectionSelection)],this.SearchGame, this.SearchSelection.toLowerCase()).subscribe(s =>{
+        this.games = s.games;
+        this.numberOfPages = s.pages;
+      })
+    }
+    else{
+      this.svc.ASearch(this.pageNumber,this.SortSelection.toLowerCase(),this.Direction1[this.Direction.indexOf(this.DirectionSelection)]).subscribe(s =>{
+        this.games = s.games;
+        this.numberOfPages = s.pages;
+      })
+    }
   }
 }

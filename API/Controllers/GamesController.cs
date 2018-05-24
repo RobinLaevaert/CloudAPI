@@ -20,11 +20,11 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public List<Game> GetAllGames(string Category, string Title, int? page, double? price, string sort, int length = 5, string dir = "asc") {
+        public returning GetAllGames(string Category, string Title, int? page, double? price, string sort, int length = 5, string dir = "asc") {
             IQueryable<Game> query = context.Games;
 
             if (!string.IsNullOrWhiteSpace(Category))
-                query = query.Where(d => d.Category == Category);
+                query = query.Where(d => d.Category.ToLower() == Category.ToLower());
             if (!string.IsNullOrWhiteSpace(Title))
                 query = query.Where(d => d.Title.ToLower().Contains(Title.ToLower()));
             if (price.HasValue)
@@ -43,14 +43,29 @@ namespace API.Controllers
                         else if (dir == "desc")
                             query = query.OrderByDescending(d => d.Price);
                         break;
+                    case "id":
+                        if (dir == "asc")
+                            query = query.OrderBy(d => d.ID);
+                        else if (dir == "desc")
+                            query = query.OrderByDescending(d => d.ID);
+                        break;
                 }
             }
             query = query.Include(d => d.Studio);
 
             if (page.HasValue)
                 query = query.Skip(page.Value * length);
+            var numberOfPages = Math.Ceiling((double)query.Count()/5);
             query = query.Take(length);
-            return query.ToList();
+            var queryt = query.ToList();
+            returning returner = new returning() { Games = queryt, Pages = numberOfPages};
+
+
+            return returner;
+        }
+        public class returning{
+            public List<Game> Games { get; set; }
+            public double Pages { get; set; }
         }
 
         [HttpPost]
@@ -62,7 +77,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateBook([FromBody] Game updatedGame) {
+        public IActionResult UpdateGame([FromBody] Game updatedGame) {
             var orgGame = context.Games.Find(updatedGame.ID);
             if (orgGame == null)
                 return NotFound();

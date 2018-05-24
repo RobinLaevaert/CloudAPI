@@ -25,7 +25,7 @@ namespace API.Controllers
             var orgStudio = context.Studios.Find(UpdateStudio.ID);
             if (orgStudio == null) { return NotFound(); }
             orgStudio.Name = UpdateStudio.Name;
-            orgStudio.Location = UpdateStudio.Name;
+            orgStudio.Location = UpdateStudio.Location;
             orgStudio.Site = UpdateStudio.Site;
             orgStudio.Games = UpdateStudio.Games;
             context.SaveChanges();
