@@ -54,6 +54,9 @@ export class GamesComponent implements OnInit {
   SearchSelection = this.Searches[0];
   SearchGame: string;
 
+  SearchBar: boolean = false;
+  hasSearched: boolean = false;
+
   public html: string = '<img src=this.mdbtooltipURL>';
   
   pageNumber : number = 0;
@@ -71,10 +74,6 @@ export class GamesComponent implements OnInit {
     this.svc.getStudios().subscribe(s =>{
       this.studios = s;
     })
-    
-    
-    
-    
   }
 
   ngOnChanges(){
@@ -106,14 +105,7 @@ export class GamesComponent implements OnInit {
     
   }
 
-  Load(){
-    this.svc.getGames(this.pageNumber).subscribe(s => {
-      this.games = s.games;
-    })
-    this.svc.getStudios().subscribe(s =>{
-      this.studios = s;
-    })
-  }
+  
 
   delete(id, type){
     switch(type){
@@ -205,6 +197,7 @@ export class GamesComponent implements OnInit {
 
   Search(){
     this.pageNumber = 0;
+    this.hasSearched = true;
     this.SearchLoad();
   }
 
@@ -221,5 +214,29 @@ export class GamesComponent implements OnInit {
         this.numberOfPages = s.pages;
       })
     }
+  }
+
+  Load(){
+    if(this.hasSearched != true){
+    this.svc.getGames(this.pageNumber).subscribe(s => {
+      this.games = s.games;
+    })
+    this.svc.getStudios().subscribe(s =>{
+      this.studios = s;
+    })
+    }
+    else {this.SearchLoad();
+    }
+  }
+
+  openSearchBar(){
+    this.SearchBar = true;
+  }
+
+  closeSearchBar(){
+    this.SearchBar = false;
+    this.hasSearched = false;
+    this.pageNumber = 0;
+    this.Load();
   }
 }

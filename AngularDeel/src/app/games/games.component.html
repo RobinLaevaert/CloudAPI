@@ -6,7 +6,7 @@
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
-                    <tr id="SearchBar">
+                    <tr id="SearchBar" *ngIf="SearchBar">
                         <th colspan="3" style="vertical-align: middle; text-align: center; margin: auto; width: auto; height: auto;"> 
                             <div style="width: auto; float: left; vertical-align: middle;">
                             Sort:
@@ -36,13 +36,14 @@
                                 <button class="btn btn-outline-success align-middle btn-sm my-0 waves-light" type="submit" (click)="Search()" mdbWavesEffect >Search</button>
                             </div></div></form>
                         </th>
+                        
                     </tr>
                     <tr mdbTooltip>
                         <th id="IDRow">ID</th>
                         <th id="NameRow">Name</th>
                         <th id="CategoryRow">Category</th>
                         <th id="PriceRow">Price (€)</th>
-                        <th></th>
+                        <th id="editRow"><i class="fa fa-close" aria-hidden="true" *ngIf="SearchBar" (click)="closeSearchBar()"></i> <i class="fa fa-search" aria-hidden="true" *ngIf="!SearchBar" (click)="openSearchBar()"></i> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,9 +57,8 @@
                     </tr>
                     <tr>
                         <td id="buttonRow"><i class="fa fa-angle-double-left" style="font-size: 2em;" (click)="previousPage()" > </i></td>
-                        <td colspan="3" id="buttonRow" style="">
-
-                                <button type="button" class="btn btn-primary waves-light" (click)="KnopClick('Game')" mdbRippleRadius>Add new game</button><br><span>Page {{pageNumber +1 }}/{{numberOfPages}}</span>
+                        <td colspan="3" id="buttonRow">
+                            <button type="button" class="btn btn-primary waves-light" (click)="KnopClick('Game')" mdbRippleRadius>Add new game</button><br><span>Page {{pageNumber +1 }}/{{numberOfPages}}</span>
                         </td>
                         <td id="buttonRow"> <i class="fa fa-angle-double-right" style="font-size: 2em;" (click)="nextPage()"></i></td>
                     </tr>

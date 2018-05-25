@@ -30,8 +30,8 @@ export class GameService {
 
   ASearch(page?: number,sort?:string, dir?:string, searchstring?:string , searchType?: string) :Observable<IRootObject>{
     if(searchstring == undefined){
-      console.log(this.url + `/games?sort=${sort}&dir=${dir}`);
-    return this.http.get<IRootObject>(this.url + `/games?sort=${sort}&dir=${dir}`)
+      console.log(this.url + `/games?sort=${sort}&dir=${dir}&page=${page}`);
+    return this.http.get<IRootObject>(this.url + `/games?sort=${sort}&dir=${dir}&page=${page}`)
     }
     else{
       

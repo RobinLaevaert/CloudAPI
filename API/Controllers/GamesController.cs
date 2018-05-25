@@ -52,10 +52,10 @@ namespace API.Controllers
                 }
             }
             query = query.Include(d => d.Studio);
-
+            var numberOfPages = Math.Ceiling((double)query.Count() / 5);
             if (page.HasValue)
                 query = query.Skip(page.Value * length);
-            var numberOfPages = Math.Ceiling((double)query.Count()/5);
+            
             query = query.Take(length);
             var queryt = query.ToList();
             returning returner = new returning() { Games = queryt, Pages = numberOfPages};
