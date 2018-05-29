@@ -77,6 +77,10 @@ export class GameService {
     return this.http.put<IStudio>(this.url + `/studios`, updateStudio, this.httpOptions);
   }
 
+  updateGame(updateGame: IGame): Observable<IGame>{
+    return this.http.put<IGame>(this.url + `/games`, updateGame, this.httpOptions);
+  }
+
 }
 
 export interface IStudio {
@@ -113,3 +117,14 @@ export interface IRootObject{
   games: IGame[];
   pages: number;
 }
+
+export interface IUpdateGame{
+  id: number;
+  title: string;
+  category: string;
+  price: number;
+  cover: string;
+  studio: INewStudio;
+}
+
+

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GameService, IGame, IStudio, INewStudio, INewGame } from '../services/game.service';
+import { GameService, IGame, IStudio, INewStudio, INewGame, IUpdateGame } from '../services/game.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,7 +24,7 @@ export class GamesComponent implements OnInit {
   newPrice: number;
   newCover: string;
   
-  studioselection: IStudio;
+  studioselection;
   showStudio: boolean = true;
   showGame: boolean = true;
   newName: string;
@@ -43,7 +43,7 @@ export class GamesComponent implements OnInit {
   updateGameCategory;
   updateGamePrice;
   updateGameCover;
-  updateGameStudio;
+  updateGameStudio: IStudio;
 
   Sorting = ["ID","Title", "Category", "Price"];
   SortSelection = this.Sorting[0];
@@ -94,8 +94,10 @@ export class GamesComponent implements OnInit {
   }
 
   addGame(){
-    alert(this.newName + " " + this.newCategory + " " + this.newPrice + " " + this.newCover);
-    var newGame: INewGame = {title: this.newTitle, category: this.newCategory, price: this.newPrice, cover: this.newCover, studio:this.studioselection};
+    
+    var newStudio: IStudio = { id: this.studioselection, name: null, location: null, site: null};
+    //alert(this.newTitle + " " + this.newCategory + " " + this.newPrice + " " + this.newCover + " " + newStudio.id);
+    var newGame: INewGame = {title: this.newTitle, category: this.newCategory, price: this.newPrice, cover: this.newCover, studio:newStudio};
     this.svc.addGame(newGame).subscribe(s => {console.log(s); this.Load(); this.game = false;})
     
   }
@@ -139,7 +141,7 @@ export class GamesComponent implements OnInit {
       this.updateGameCategory = this.games[arrayID].category;
       this.updateGameCover = this.games[arrayID].cover;
       this.updateGameTitle = this.games[arrayID].title;
-      //this.updateGameStudio = this.games[arrayID].studio;
+      this.updateGameStudio = this.games[arrayID].studio;
       this.updateGamePrice = this.games[arrayID].price;
       this.updateGame = true;
       break;
@@ -158,8 +160,12 @@ export class GamesComponent implements OnInit {
       
       break;
       case 'game':
-      
-      this.updateGame = false;
+      //var updategamestudio1 : INewStudio = {name: this.updateGameStudio.name, site:this.updateGameStudio.site, location: this.updateGameStudio.location};
+      var updateGame: IGame = {id: this.updateGameID, title: this.updateGameTitle, category: this.updateGameCategory, cover: this.updateGameCover, price: this.updateGamePrice, studio: this.updateGameStudio};
+      this.svc.updateGame(updateGame).subscribe(s =>{
+        this.updateGame = false;
+        this.Load()
+      })
       break;
     }
   }

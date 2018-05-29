@@ -70,10 +70,15 @@ namespace API.Controllers
 
         [HttpPost]
         public IActionResult CreateGame([FromBody] Game newGame) {
-            
-            context.Games.Add(newGame);
+            var newGame1 = new Game();
+            newGame1.Title = newGame.Title;
+            newGame1.Price = newGame.Price;
+            newGame1.Cover = newGame.Cover;
+            newGame1.Category = newGame.Category;
+            newGame1.Studio = context.Studios.Find(newGame.Studio.ID);
+            context.Games.Add(newGame1);
             context.SaveChanges();
-            return Created("", newGame);
+            return Created("", newGame1);
         }
 
         [HttpPut]
@@ -85,7 +90,7 @@ namespace API.Controllers
             orgGame.Price = updatedGame.Price;
             orgGame.Cover = updatedGame.Cover;
             orgGame.Category = updatedGame.Category;
-            orgGame.Studio = updatedGame.Studio;
+            orgGame.Studio = context.Studios.Find(updatedGame.Studio.ID);
             context.SaveChanges();
             return Ok(orgGame);
         }

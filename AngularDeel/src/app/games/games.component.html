@@ -116,27 +116,28 @@
             </div>
             <!--Text-->
             <div class="md-form ">
-                <input type="text" name="text" [(ngModel)]="newTitle" id="form2" class="form-control" placeholder="Title">
+                <input type="text" name="newTitle" [(ngModel)]="newTitle" id="form2" class="form-control" placeholder="Title">
             </div>
 
             <div class="md-form">
-                <input placeholder="Category" type="text" name="text" [(ngModel)]="newCategory" id="form1" class="form-control">
+                <input placeholder="Category" type="text" name="newCategory" [(ngModel)]="newCategory" id="form1" class="form-control">
             </div>
 
             <div class="md-form">
                 <i class="fa fa-euro prefix" style="margin:auto"></i>
-                <input placeholder="Price" type="number" name="text" [(ngModel)]="newPrice" id="form2" class="form-control">
+                <input placeholder="Price" type="number" name="newPrice" [(ngModel)]="newPrice" id="form2" class="form-control">
             </div>
 
             <div class="md-form">
-                <input placeholder="Cover image URL" type="text" name="text" [(ngModel)]="newCover" id="form1" class="form-control">
+                <input placeholder="Cover image URL" type="text" name="newCover" [(ngModel)]="newCover" id="form1" class="form-control">
             </div>
 
             <div class="md-form">
-            <select class="browser-default" [(ngModel)] = "studioselection" name="StudioSelect" >
+            <select class="browser-default" [(ngModel)] = "studioselection" name="studioselection" >
                 <option value="" disabled selected >Choose your option</option>
                 <option *ngFor="let s of studios" [value]="s.id">{{s.name}}</option>
             </select>
+           
         </div>
 
             <div style="text-align: center">
@@ -182,7 +183,7 @@
             
 
             <div style="text-align: center">
-                <button type="button" class="btn btn-primary waves-light" (click)="addGame()" mdbWavesEffect>Add</button>
+                <button type="button" class="btn btn-primary waves-light" (click)="put('game')" mdbWavesEffect>Update</button>
             </div>
         </div>
     </form>
