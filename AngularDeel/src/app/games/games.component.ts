@@ -98,7 +98,7 @@ export class GamesComponent implements OnInit {
     var newStudio: IStudio = { id: this.studioselection, name: null, location: null, site: null};
     //alert(this.newTitle + " " + this.newCategory + " " + this.newPrice + " " + this.newCover + " " + newStudio.id);
     var newGame: INewGame = {title: this.newTitle, category: this.newCategory, price: this.newPrice, cover: this.newCover, studio:newStudio};
-    this.svc.addGame(newGame).subscribe(s => {console.log(s); this.Load(); this.game = false;})
+    this.svc.addGame(newGame).subscribe(s => {console.log(s); this.Load(); this.game = false;});this.Load();
     
   }
   addStudio(){
@@ -226,9 +226,11 @@ export class GamesComponent implements OnInit {
     if(this.hasSearched != true){
     this.svc.getGames(this.pageNumber).subscribe(s => {
       this.games = s.games;
+      this.numberOfPages = s.pages;
     })
     this.svc.getStudios().subscribe(s =>{
       this.studios = s;
+      
     })
     }
     else {this.SearchLoad();

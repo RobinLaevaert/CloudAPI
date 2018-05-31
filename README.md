@@ -2,4 +2,5 @@
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng build` followed by `npm run server` for a running server sith authentication. Navigate to `http://localhost:3000/`.
+Don't forget running the api by opening the .sln file and starting the service is visual studio.
